@@ -19,9 +19,10 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["ALLOWED_ORIGINS"],
-    allow_methods=["GET", "POST"],
+    allow_origins=ALLOWED_ORIGINS,
+    allow_methods=["GET", "POST","OPTIONS"],
     allow_credentials=True,
+    allow_headers=["Content-Type"],
 )
 def get_session_id(request: Request, response: Response) -> str:
     sid = request.cookies.get("session_id")      # 先看有没有纸条
